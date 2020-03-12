@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Routine.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Routine.Api.Controllers.CompaniesController.GetCompanies(Routine.Api.DtoParameters.CompanyDtoParameters)">
+            <summary>
+            获取全部公司
+            </summary>
+            <param name="parameters">查询参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Routine.Api.Controllers.CompaniesController.GetCompany(System.Guid,System.String)">
+            <summary>
+            获取特定公司
+            </summary>
+            <param name="companyId">公司ID</param>
+            <param name="fields">字段</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

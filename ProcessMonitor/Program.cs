@@ -60,7 +60,7 @@ namespace ProcessMonitor
             ProcessStartInfo psf = new ProcessStartInfo
             {
                 FileName = Path.Combine(_adplusPath, "adplus.exe"),
-                Arguments = string.Format("-crash -p {0} -o c:\\dumps", pid),
+                Arguments = $"-crash -FullOnFirst -p {pid} -o c:\\dumps",
                 WorkingDirectory = _adplusPath,
                 UseShellExecute = false
             };

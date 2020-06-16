@@ -12,8 +12,9 @@ namespace ProcessMonitor
     class Program
     {
         static readonly List<int> _dumpPIDs = new List<int>();
-        private static readonly string _processName = System.Configuration.ConfigurationManager.AppSettings["ProcessName"];
         private static readonly string _adplusPath = System.Configuration.ConfigurationManager.AppSettings["adplusPath"];
+        private static readonly string _outputPath = System.Configuration.ConfigurationManager.AppSettings["outputPath"];
+        private static readonly string _processName = System.Configuration.ConfigurationManager.AppSettings["processName"];
         private static int _ellipsisPrintTimes;
         static void Main(string[] args)
         {
@@ -63,7 +64,7 @@ namespace ProcessMonitor
             ProcessStartInfo psf = new ProcessStartInfo
             {
                 FileName = Path.Combine(_adplusPath, "adplus.exe"),
-                Arguments = $"-crash -FullOnFirst -p {pid} -o c:\\dumps",
+                Arguments = $"-crash -FullOnFirst -p {pid} -o {_outputPath}",
                 WorkingDirectory = _adplusPath,
                 UseShellExecute = true
             };

@@ -14,13 +14,15 @@ namespace ProcessMonitor
         static readonly List<int> _dumpPIDs = new List<int>();
         private static readonly string _processName = System.Configuration.ConfigurationManager.AppSettings["ProcessName"];
         private static readonly string _adplusPath = System.Configuration.ConfigurationManager.AppSettings["adplusPath"];
+        private static int _ellipsisPrintTimes;
         static void Main(string[] args)
         {
-            int i = 0;
             while (true)
             {
                 Console.Write("... ...");
-                if (++i % 11 == 0) { Console.WriteLine(); i = 0; }
+                _ellipsisPrintTimes++;
+
+                if (_ellipsisPrintTimes % 10 == 0) { Console.WriteLine(); }
 
                 ThreadProc();
                 Thread.Sleep(10000);
@@ -37,9 +39,10 @@ namespace ProcessMonitor
                     if (processName.IndexOf(_processName, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         Console.WriteLine("{0}-{1}", vProcess.ProcessName, vProcess.Id);
+                        _ellipsisPrintTimes = 0;
 
-                        if (_dumpPIDs.Contains(vProcess.Id))
-                            continue;
+                        if (_dumpPIDs.Contains(vProcess.Id)) { continue; }
+
                         _dumpPIDs.Add(vProcess.Id);
 
                         DumpProcessDeg d = DumpProcess;
@@ -62,7 +65,7 @@ namespace ProcessMonitor
                 FileName = Path.Combine(_adplusPath, "adplus.exe"),
                 Arguments = $"-crash -FullOnFirst -p {pid} -o c:\\dumps",
                 WorkingDirectory = _adplusPath,
-                UseShellExecute = false
+                UseShellExecute = true
             };
             Process proc;
             try

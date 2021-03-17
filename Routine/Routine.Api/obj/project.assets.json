@@ -2236,20 +2236,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\guoshaoyue\\.nuget\\packages\\": {}
+    "C:\\Users\\guoshaoyue\\.nuget\\packages\\": {},
+    "D:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Chris\\VS2019\\Routine\\Routine.Api\\Routine.Api.csproj",
+      "projectUniqueName": "F:\\GitHub\\ManageTools\\Routine\\Routine.Api\\Routine.Api.csproj",
       "projectName": "Routine.Api",
-      "projectPath": "F:\\Chris\\VS2019\\Routine\\Routine.Api\\Routine.Api.csproj",
+      "projectPath": "F:\\GitHub\\ManageTools\\Routine\\Routine.Api\\Routine.Api.csproj",
       "packagesPath": "C:\\Users\\guoshaoyue\\.nuget\\packages\\",
-      "outputPath": "F:\\Chris\\VS2019\\Routine\\Routine.Api\\obj\\",
+      "outputPath": "F:\\GitHub\\ManageTools\\Routine\\Routine.Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
         "C:\\Users\\guoshaoyue\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -2260,6 +2265,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -2271,6 +2277,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
@@ -2325,7 +2332,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

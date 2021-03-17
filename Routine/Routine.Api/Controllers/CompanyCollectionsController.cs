@@ -48,6 +48,27 @@ namespace Routine.Api.Controllers
             return Ok(dtosToReturn);
         }
 
+        // Baidu
+        [HttpGet("{companyName}", Name = nameof(Get))]
+        public async Task<IActionResult> Get([FromQuery] string companyName, string country)
+        {
+            if (string.IsNullOrWhiteSpace(companyName))
+            {
+                return BadRequest();
+            }
+
+            var entities = await _companyRepository.GetCompaniesAsync(companyName, country);
+
+            if (entities.Count() == 0)
+            {
+                return NotFound();
+            }
+
+            var dtosToReturn = _mapper.Map<IEnumerable<CompanyDto>>(entities);
+
+            return Ok(dtosToReturn);
+        }
+
         [HttpPost]
         public async Task<ActionResult<IEnumerable<CompanyDto>>> CreateCompanyCollection(
             IEnumerable<CompanyAddDto> companyCollection)
@@ -65,8 +86,8 @@ namespace Routine.Api.Controllers
 
             var idsString = string.Join(",", dtosToReturn.Select(x => x.Id));
 
-            return CreatedAtRoute(nameof(GetCompanyCollection), 
-                new { ids = idsString }, 
+            return CreatedAtRoute(nameof(GetCompanyCollection),
+                new { ids = idsString },
                 dtosToReturn);
         }
     }

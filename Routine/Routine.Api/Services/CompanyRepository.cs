@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Routine.Api.Data;
@@ -72,6 +73,24 @@ namespace Routine.Api.Services
 
             return await _context.Companies
                 .Where(x => companyIds.Contains(x.Id))
+                .OrderBy(x => x.Name)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Company>>
+            GetCompaniesAsync(string companyName, string country = null)
+        {
+            if (string.IsNullOrWhiteSpace(companyName))
+            {
+                throw new ArgumentNullException(nameof(companyName));
+            }
+
+            //不能使用.Where(x => string.Equals(x.Name, companyName, StringComparison.InvariantCultureIgnoreCase))，翻译为数据库SQL语句会失败！
+            Expression<Func<Company, bool>> predicate1 = x => x.Name.ToUpper() == companyName.ToUpper();
+            Expression<Func<Company, bool>> predicate2 = x => string.IsNullOrWhiteSpace(country) || x.Country.ToUpper() == country.ToUpper();
+
+            return await _context.Companies
+                .Where(predicate1).Where(predicate2)
                 .OrderBy(x => x.Name)
                 .ToListAsync();
         }
